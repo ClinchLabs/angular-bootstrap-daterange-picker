@@ -1,7 +1,7 @@
 {
-  "name": "ng-daterange-picker",
+  "name": "angular-bootstrap-daterange-picker",
   "description": "another Angular.js wrapper for bootstrap-daterangepicker",
-  "main": "dist/angular-daterange-picker.js",
+  "main": "dist/angular-bootstrap-daterange-picker.js",
   "authors": [
     "xy"
   ],

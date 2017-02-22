@@ -43,10 +43,10 @@ gulp.task('build', function () {
     return gulp.src(js)
         .pipe($.size({title: 'build start'}))
         .pipe($.babel())
-        .pipe($.concat('angular-daterange-picker.js'))
+        .pipe($.concat('angular-bootstrap-daterange-picker.js'))
         .pipe($.ngAnnotate({ add: true }))
         .pipe(gulp.dest(dist))
-        .pipe($.rename('angular-daterange-picker.min.js'))
+        .pipe($.rename('angular-bootstrap-daterange-picker.min.js'))
         .pipe($.uglify())
         .pipe(gulp.dest(dist))
         .pipe($.size({title: 'build complete'}));

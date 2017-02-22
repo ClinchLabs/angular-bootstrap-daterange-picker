@@ -1,8 +1,10 @@
-# angular-daterange-picker
+# angular-bootstrap-daterange-picker
 > 
 
 ## Installation
-TBD
+```bash
+bower install angular-bootstrap-daterange-picker --save-dev
+```
 
 ## Getting Started
 TBD
