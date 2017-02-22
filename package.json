@@ -1,7 +1,7 @@
 {
-  "name": "angular-daterange-picker",
+  "name": "ng-daterange-picker",
   "version": "1.0.0",
-  "description": "another Angular.js wrapper for dangrossman/bootstrap-daterangepicker",
+  "description": "another Angular.js wrapper for bootstrap-daterangepicker",
   "main": "dist/angular-daterange-picker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
