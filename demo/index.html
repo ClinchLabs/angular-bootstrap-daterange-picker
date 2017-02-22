@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>daterange picker demo</title>
+	<!-- bower:css -->
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+	<!-- endbower -->
+</head>
+
+<body ng-app="demo">
+	<div class="container-fluid" ng-controller="DemoCtrl as vm">
+		<h1>Demo</h1>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6">
+				<form name="dateForm" novalidate>
+					<div class="form-group">
+						<label for="daterange1">Simple picker</label>
+						<input date-range-picker 
+							id="daterange1"
+							name="daterange1" 
+							class="form-control date-picker" 
+							type="text" 
+							ng-model="vm.selectedDate" 
+							date-min="'2017-01-04'" 
+							date-max="'2017-01-25'"
+							date-apply="vm.onDateApply(event)"
+							date-cancel="vm.onDateCancel(event)"
+							date-clearable
+							required/>
+							{{vm.isDirty()}}
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- bower:js -->
+	<script src="../bower_components/angular/angular.js"></script>
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="../bower_components/moment/moment.js"></script>
+	<script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- endbower -->
+	<script src="../dist/angular-daterange-picker.js"></script>
+	<script src="./script.js"></script>
+</body>
+
+</html>

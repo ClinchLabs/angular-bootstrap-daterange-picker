@@ -1,0 +1,28 @@
+{
+  "name": "angular-daterange-picker",
+  "version": "1.0.0",
+  "description": "another Angular.js wrapper for dangrossman/bootstrap-daterangepicker",
+  "main": "dist/angular-daterange-picker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "boostrap"
+  ],
+  "author": "xy",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-env": "^1.1.8",
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-size": "^2.1.0",
+    "gulp-uglify": "^2.0.0",
+    "wiredep": "^4.0.0"
+  }
+}
