@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<title>daterange picker demo</title>
-	<!-- bower:css -->
-	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
-	<link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker.css" />
-	<!-- endbower -->
 </head>
-
 <body ng-app="demo">
 	<div class="container-fluid" ng-controller="DemoCtrl as vm">
 		<h1>Demo</h1>
 		<hr>
 		<div class="row">
-			<div class="col-sm-6">
-				<form name="dateForm" novalidate>
+			<div class="col-sm-4">
+				<form name="vm.dateForm" novalidate>
+					<div class="form-group">
+						<label class="control-label">ngModelController.$dirty</label>
+						<p class="form-control-static">{{vm.dateForm.$dirty}}</p>
+					</div>
 					<div class="form-group">
 						<label for="daterange1">Simple picker</label>
 						<input date-range-picker 
@@ -25,27 +23,64 @@
 							class="form-control date-picker" 
 							type="text" 
 							ng-model="vm.selectedDate" 
+							required/>
+					</div>
+					<div class="form-group">
+						<label for="daterange2">Picker with min and max date</label>
+						<input date-range-picker 
+							id="daterange2"
+							name="daterange2" 
+							class="form-control date-picker" 
+							type="text" 
+							ng-model="vm.selectedDate" 
 							date-min="'2017-01-04'" 
 							date-max="'2017-01-25'"
+							required/>
+					</div>
+					<div class="form-group">
+						<label for="daterange3">Clearable picker</label>
+						<input date-range-picker 
+							id="daterange3"
+							name="daterange3" 
+							class="form-control date-picker" 
+							type="text" 
+							ng-model="vm.selectedDate" 
+							date-clearable
 							date-apply="vm.onDateApply(event)"
 							date-cancel="vm.onDateCancel(event)"
-							date-clearable
 							required/>
-							{{vm.isDirty()}}
 					</div>
+					<!--<div class="form-group">
+						<label for="daterange4">Picker with custom format</label>
+						<input date-range-picker 
+							id="daterange4"
+							name="daterange4" 
+							class="form-control date-picker" 
+							type="text" 
+							ng-model="vm.selectedDate" 
+							date-option="{locale: {format: 'MMMM D, YYYY'}}"
+							required/>
+					</div>
+					<div class="form-group">
+						<label for="daterange4">simgle date</label>
+						<input date-range-picker 
+							id="daterange4"
+							name="daterange4" 
+							class="form-control date-picker" 
+							type="text" 
+							ng-model="vm.selectedDate" 
+							date-option="{singleDatePicker: true}"
+							required/>
+					</div>-->
 				</form>
 			</div>
 		</div>
+		<div class="row">
+			<h4>Dates:</h4>
+			<div class="col-md-12 well">
+				{{vm.selectedDate}}<br>
+			</div>
+		</div>
 	</div>
-	<!-- bower:js -->
-	<script src="../bower_components/angular/angular.js"></script>
-	<script src="../bower_components/jquery/dist/jquery.js"></script>
-	<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="../bower_components/moment/moment.js"></script>
-	<script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- endbower -->
-	<script src="../dist/angular-bootstrap-daterange-picker.js"></script>
-	<script src="./script.js"></script>
 </body>
-
 </html>
