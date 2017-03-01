@@ -2,7 +2,7 @@ import moment from 'moment';
 import $ from 'jquery';
 import 'bootstrap-daterangepicker/daterangepicker.js';
 import 'bootstrap-daterangepicker/daterangepicker.css';
-import DateRange from './dateRange.service';
+import DateRange from './dateRange';
 import dateRangePickerConfig from './dateRangePickerConfig.constant';
 
 export default function dateRangePicker() {
