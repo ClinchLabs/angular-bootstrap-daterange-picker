@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
 import angular from 'angular';
-import dateRangePicker from 'angular-bootstrap-daterange-picker.min';
+import dateRangePicker from 'angular-bootstrap-daterange-picker';
 
 import DemoCtrl from './demo.controller';
 

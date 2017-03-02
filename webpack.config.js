@@ -49,10 +49,16 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "temp"),
         open: true,
-        port: 8080
+        port: 8090
     },
 
     // devtool: "cheap-eval-source-map",
+
+    externals: {
+        angular: 'angular',
+        jquery: 'jQuery',
+        moment: 'moment'
+    },
 
     resolve: {
         //从哪里开始查找模块
@@ -70,14 +76,14 @@ module.exports = {
             include: /\.min\.js$/,
             minimize: true
         }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            'window.jquery': 'jquery',
-            moment: 'moment',
-            'window.moment': 'moment',
-        }),
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery',
+        //     jQuery: 'jquery',
+        //     'window.jQuery': 'jquery',
+        //     'window.jquery': 'jquery',
+        //     moment: 'moment',
+        //     'window.moment': 'moment',
+        // }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             inject: 'body',

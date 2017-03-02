@@ -1,8 +1,12 @@
 import moment from 'moment';
-import dateRangePickerConfig from './dateRangePickerConfig.constant';
+
+const defaultLocale = {
+	format: 'YYYY-MM-DD',
+	separator: '-'
+}
 
 export default class DateRange {
-	constructor(startDate, endDate, locale = dateRangePickerConfig.locale) {
+	constructor(startDate, endDate, locale) {
 		this._startDate = startDate ? moment(startDate) : null;
 		this._endDate = endDate ? moment(endDate) : null;
 		this._locale = locale;
@@ -19,7 +23,7 @@ export default class DateRange {
 	}
 
 	get startDate() {
-		return this._endDate
+		return this._startDate
 			? this._startDate.format(this._locale.format)
 			: '';
 	}
@@ -35,6 +39,7 @@ export default class DateRange {
 			? [this.startDate, this.endDate].join(this._locale.separator)
 			: this.startDate;
 	}
+
 	toString() {
 		return this.valueOf();
 	}

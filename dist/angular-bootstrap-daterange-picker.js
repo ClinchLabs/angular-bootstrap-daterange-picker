@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("moment"), require("jquery"), require("angular")) : factory(root["moment"], root["jquery"], root["angular"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -78,31 +78,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    clearLabel: 'Clear',
-    autoUpdateInput: false,
-    locale: {
-        separator: ' - ',
-        format: 'YYYY-MM-DD'
-    }
-};
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114,22 +95,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _moment = __webpack_require__(1);
+var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
-
-var _dateRangePickerConfig = __webpack_require__(0);
-
-var _dateRangePickerConfig2 = _interopRequireDefault(_dateRangePickerConfig);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var DateRange = function () {
-	function DateRange(startDate, endDate) {
-		var locale = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _dateRangePickerConfig2.default.locale;
+var defaultLocale = {
+	format: 'YYYY-MM-DD',
+	separator: '-'
+};
 
+var DateRange = function () {
+	function DateRange(startDate, endDate, locale) {
 		_classCallCheck(this, DateRange);
 
 		this._startDate = startDate ? (0, _moment2.default)(startDate) : null;
@@ -155,7 +135,7 @@ var DateRange = function () {
 	}, {
 		key: 'startDate',
 		get: function get() {
-			return this._endDate ? this._startDate.format(this._locale.format) : '';
+			return this._startDate ? this._startDate.format(this._locale.format) : '';
 		}
 	}, {
 		key: 'endDate',
@@ -178,6 +158,25 @@ var DateRange = function () {
 exports.default = DateRange;
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    clearLabel: 'Clear',
+    autoUpdateInput: false,
+    locale: {
+        separator: ' - ',
+        format: 'YYYY-MM-DD'
+    }
+};
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
@@ -198,7 +197,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = dateRangePicker;
 
-var _moment = __webpack_require__(1);
+var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
@@ -210,11 +209,11 @@ __webpack_require__(6);
 
 __webpack_require__(10);
 
-var _dateRange = __webpack_require__(2);
+var _dateRange = __webpack_require__(1);
 
 var _dateRange2 = _interopRequireDefault(_dateRange);
 
-var _dateRangePickerConfig = __webpack_require__(0);
+var _dateRangePickerConfig = __webpack_require__(2);
 
 var _dateRangePickerConfig2 = _interopRequireDefault(_dateRangePickerConfig);
 
@@ -242,7 +241,7 @@ function dateRangePicker() {
     };
 
     function link(scope, ele, attr, modelCtrl) {
-        var opts = angular.merge({}, scope.dateOption, _dateRangePickerConfig2.default);
+        var opts = angular.merge({}, _dateRangePickerConfig2.default, scope.dateOption);
         var el = (0, _jquery2.default)(ele); //jqlite -> jquery
         var bsDatePicker = void 0; //bootstrap date picker
         scope.model = scope.model || {};
@@ -330,6 +329,7 @@ function dateRangePicker() {
         }
 
         function _setEndDate(value) {
+            if (opts.singleDatePicker) return;
             if (!bsDatePicker || !value) return;
             if (bsDatePicker.startDate > value) bsDatePicker.setStartDate(value);
             opts.endDate = value;
@@ -348,7 +348,7 @@ function dateRangePicker() {
 
             // el.daterangepicker(opts, (start, end) => scope.$apply(scope.model = new DateRange(start, end, opts.locale)));
             el.daterangepicker(opts, function (start, end) {
-                var date = new _dateRange2.default(start, end, opts.locale);
+                var date = new _dateRange2.default(start, opts.singleDatePicker ? null : end, opts.locale);
                 modelCtrl.$setDirty();
                 scope.$apply(scope.model = date);
             });
@@ -402,7 +402,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 (function (root, factory) {
     if (true) {
         // AMD. Make globaly available as well
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (moment, jquery) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (moment, jquery) {
             return (root.daterangepicker = factory(moment, jquery));
         }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -2107,7 +2107,7 @@ var stylesInDom = {},
 		};
 	},
 	isOldIE = memoize(function() {
-		return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
 	}),
 	getHeadElement = memoize(function () {
 		return document.head || document.getElementsByTagName("head")[0];
@@ -2383,11 +2383,11 @@ var _angular = __webpack_require__(5);
 
 var _angular2 = _interopRequireDefault(_angular);
 
-var _dateRangePickerConfig = __webpack_require__(0);
+var _dateRangePickerConfig = __webpack_require__(2);
 
 var _dateRangePickerConfig2 = _interopRequireDefault(_dateRangePickerConfig);
 
-var _dateRange = __webpack_require__(2);
+var _dateRange = __webpack_require__(1);
 
 var _dateRange2 = _interopRequireDefault(_dateRange);
 
@@ -2397,7 +2397,7 @@ var _dateRangePicker2 = _interopRequireDefault(_dateRangePicker);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _angular2.default.module('dateRangePicker', []).constant('dateRangePickerConfig', _dateRangePickerConfig2.default).service('DateRange', _dateRange2.default).directive('dateRangePicker', _dateRangePicker2.default).name;
+exports.default = _angular2.default.module('dateRangePicker', []).constant('dateRangePickerConfig', _dateRangePickerConfig2.default).directive('dateRangePicker', _dateRangePicker2.default).name;
 
 /***/ })
 /******/ ]);
