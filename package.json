@@ -7,7 +7,8 @@
     "build": "webpack --config webpack.config.prod.js",
     "build:watch": "webpack --config webpack.config.prod.js --watch",
     "start": "webpack-dev-server",
-    "test": "karma start"
+    "test": "karma start",
+    "deployDemo":"webpack --config webpack.config.prod.js && git checkout gh-pages && rm -f *.* && mv build/* ."
   },
   "keywords": [
     "angular",
@@ -30,6 +31,7 @@
     "babel-cli": "^6.22.2",
     "babel-loader": "^6.2.10",
     "babel-plugin-angularjs-annotate": "^0.7.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-preset-env": "^1.1.8",
     "bootstrap": "^3.3.7",
     "bootstrap-daterangepicker": "^2.1.25",
@@ -48,9 +50,10 @@
     "mocha": "^3.2.0",
     "moment": "^2.17.1",
     "phantomjs-prebuilt": "^2.1.14",
+    "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^2.4.1"
   }
 }

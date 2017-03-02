@@ -1,9 +1,12 @@
 export default class DemoCtrl {
     constructor() {
-        this.selectedDate = {
+        this.dateRange = {
             startDate: moment().subtract(1, "days"),
             endDate: moment()
         };
+        this.singleDate = {
+            startDate: moment()
+        }
     }
 
     onDateApply(event) {

@@ -26,7 +26,7 @@ export default function dateRangePicker() {
     }
 
     function link(scope, ele, attr, modelCtrl) {
-        const opts = angular.merge({}, scope.dateOption, dateRangePickerConfig);
+        const opts = angular.merge({}, dateRangePickerConfig, scope.dateOption);
         const el = $(ele); //jqlite -> jquery
         let bsDatePicker; //bootstrap date picker
         scope.model = scope.model || {};
@@ -53,7 +53,7 @@ export default function dateRangePicker() {
          * viewValue => modelValue
          */
         modelCtrl.$parsers.push(value => {
-            if(value instanceof DateRange) return value;
+            if (value instanceof DateRange) return value;
             const [start, end] = ~value.indexOf(opts.locale.separator)
                 ? value.split(opts.locale.separator)
                 : [value, null];
@@ -107,6 +107,7 @@ export default function dateRangePicker() {
         }
 
         function _setEndDate(value) {
+            if(opts.singleDatePicker) return;
             if (!bsDatePicker || !value) return;
             if (bsDatePicker.startDate > value) bsDatePicker.setStartDate(value);
             opts.endDate = value;
@@ -122,10 +123,10 @@ export default function dateRangePicker() {
                     scope.$apply(scope.model = new DateRange(null, null, opts.locale))
                 });
             }
-
+            
             // el.daterangepicker(opts, (start, end) => scope.$apply(scope.model = new DateRange(start, end, opts.locale)));
             el.daterangepicker(opts, (start, end) => {
-                const date = new DateRange(start, end, opts.locale);
+                const date = new DateRange(start, opts.singleDatePicker ? null : end, opts.locale);
                 modelCtrl.$setDirty();
                 scope.$apply(scope.model = date)
             });

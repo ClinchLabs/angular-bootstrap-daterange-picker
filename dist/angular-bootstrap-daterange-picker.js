@@ -118,18 +118,17 @@ var _moment = __webpack_require__(1);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _dateRangePickerConfig = __webpack_require__(0);
-
-var _dateRangePickerConfig2 = _interopRequireDefault(_dateRangePickerConfig);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var DateRange = function () {
-	function DateRange(startDate, endDate) {
-		var locale = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _dateRangePickerConfig2.default.locale;
+var defaultLocale = {
+	format: 'YYYY-MM-DD',
+	separator: '-'
+};
 
+var DateRange = function () {
+	function DateRange(startDate, endDate, locale) {
 		_classCallCheck(this, DateRange);
 
 		this._startDate = startDate ? (0, _moment2.default)(startDate) : null;
@@ -155,7 +154,7 @@ var DateRange = function () {
 	}, {
 		key: 'startDate',
 		get: function get() {
-			return this._endDate ? this._startDate.format(this._locale.format) : '';
+			return this._startDate ? this._startDate.format(this._locale.format) : '';
 		}
 	}, {
 		key: 'endDate',
@@ -242,7 +241,7 @@ function dateRangePicker() {
     };
 
     function link(scope, ele, attr, modelCtrl) {
-        var opts = angular.merge({}, scope.dateOption, _dateRangePickerConfig2.default);
+        var opts = angular.merge({}, _dateRangePickerConfig2.default, scope.dateOption);
         var el = (0, _jquery2.default)(ele); //jqlite -> jquery
         var bsDatePicker = void 0; //bootstrap date picker
         scope.model = scope.model || {};
@@ -330,6 +329,7 @@ function dateRangePicker() {
         }
 
         function _setEndDate(value) {
+            if (opts.singleDatePicker) return;
             if (!bsDatePicker || !value) return;
             if (bsDatePicker.startDate > value) bsDatePicker.setStartDate(value);
             opts.endDate = value;
@@ -348,7 +348,7 @@ function dateRangePicker() {
 
             // el.daterangepicker(opts, (start, end) => scope.$apply(scope.model = new DateRange(start, end, opts.locale)));
             el.daterangepicker(opts, function (start, end) {
-                var date = new _dateRange2.default(start, end, opts.locale);
+                var date = new _dateRange2.default(start, opts.singleDatePicker ? null : end, opts.locale);
                 modelCtrl.$setDirty();
                 scope.$apply(scope.model = date);
             });
@@ -2107,7 +2107,7 @@ var stylesInDom = {},
 		};
 	},
 	isOldIE = memoize(function() {
-		return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
 	}),
 	getHeadElement = memoize(function () {
 		return document.head || document.getElementsByTagName("head")[0];
@@ -2397,7 +2397,7 @@ var _dateRangePicker2 = _interopRequireDefault(_dateRangePicker);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _angular2.default.module('dateRangePicker', []).constant('dateRangePickerConfig', _dateRangePickerConfig2.default).service('DateRange', _dateRange2.default).directive('dateRangePicker', _dateRangePicker2.default).name;
+exports.default = _angular2.default.module('dateRangePicker', []).constant('dateRangePickerConfig', _dateRangePickerConfig2.default).directive('dateRangePicker', _dateRangePicker2.default).name;
 
 /***/ })
 /******/ ]);

@@ -49,7 +49,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "temp"),
         open: true,
-        port: 8080
+        port: 8090
     },
 
     // devtool: "cheap-eval-source-map",
