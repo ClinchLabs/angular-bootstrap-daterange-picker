@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-daterange-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "another Angular.js wrapper for bootstrap-daterangepicker",
   "main": "dist/angular-bootstrap-daterange-picker.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build:watch": "webpack --config webpack.config.prod.js --watch",
     "start": "webpack-dev-server",
     "test": "karma start",
-    "deployDemo":"webpack && git checkout gh-pages && rm -f *.* && mv temp/* ."
+    "deployDemo": "webpack && git checkout gh-pages && rm -f *.* && mv temp/* ."
   },
   "keywords": [
     "angular",
