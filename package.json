@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-daterange-picker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "another Angular.js wrapper for bootstrap-daterangepicker",
   "main": "dist/angular-bootstrap-daterange-picker.js",
   "scripts": {
