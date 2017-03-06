@@ -56,7 +56,7 @@ module.exports = {
 
     externals: {
         angular: 'angular',
-        jquery: 'jQuery',
+        jQuery: 'jQuery',
         moment: 'moment'
     },
 

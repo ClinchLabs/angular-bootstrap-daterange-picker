@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("moment"), require("jquery"), require("angular"));
+		module.exports = factory(require("moment"), require("jQuery"), require("angular"));
 	else if(typeof define === 'function' && define.amd)
-		define(["moment", "jquery", "angular"], factory);
+		define(["moment", "jQuery", "angular"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("moment"), require("jquery"), require("angular")) : factory(root["moment"], root["jquery"], root["angular"]);
+		var a = typeof exports === 'object' ? factory(require("moment"), require("jQuery"), require("angular")) : factory(root["moment"], root["jQuery"], root["angular"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
 })(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_5__) {
