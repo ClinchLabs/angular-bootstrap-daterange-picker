@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:noob9527/angular-bootstrap-daterange-picker.git"
+    "url": "git+https://git@github.com/ClinchLabs/angular-bootstrap-daterange-picker.git"
   },
   "author": "xy",
   "license": "MIT",
